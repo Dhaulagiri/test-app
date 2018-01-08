@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { describe, beforeEach, it } from 'mocha';
 import { setupModelTest } from 'ember-mocha';
-import EmberObject from '@ember/object';
+import Foo from 'test-app/models/foo';
 
 describe('Unit | Model | foo', function() {
   setupModelTest('foo', {
@@ -12,12 +12,22 @@ describe('Unit | Model | foo', function() {
   let arr;
   beforeEach(function() {
     arr = [
-      EmberObject.create({ id: 1 }),
-      EmberObject.create({ id: 2 })
+      Foo.create({ id: 1}),
+      Foo.create({ id: 2 })
     ];
   });
 
   it('tests', function() {
       expect(arr).to.contain('foo');
+  });
+
+  it.only('test the other thing', function() {
+    expect(Foo.all()).to.deep.equal([
+      Foo.A(),
+      Foo.B(),
+      Foo.C(),
+      Foo.D(),
+      Foo.E()
+    ])
   });
 });
